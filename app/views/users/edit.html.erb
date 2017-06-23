@@ -1,0 +1,25 @@
+<div id='profile'>
+  <h1>Profile</h1>
+
+  <%= form_for :user, url: profile_path do |f| %>
+    <%= f.label :name, "First Name" %>
+    <%= f.text_field :first_name, placeholder: "DIO", :required => true, :value => @user.first_name %>
+
+    <%= f.label :name, "Last Name" %>
+    <%= f.text_field :last_name, placeholder: "Works", :required => true, :value => @user.last_name %>
+
+    <%= f.label :name, "Email" %>
+    <%= f.email_field :email, placeholder: "dioworks@dioworks.com", :required => true, :value => @user.email %>
+
+    <%= f.label :name, "I am a Seller" %>
+    <%= f.select :is_seller, [['No', false],['Yes', true]], :required => true, :value => @user.is_seller %>
+
+    <%= f.label :name, "New Password" %>
+    <%= f.password_field :password, placeholder: "Enter your password", :required => true %>
+
+    <%= f.label :name, "Confirm Password" %>
+    <%= f.password_field :password_confirmation, placeholder: "Please confirm it", :required => true %>
+
+    <%= f.submit "Sign Up" %>
+  <% end %>
+</div>

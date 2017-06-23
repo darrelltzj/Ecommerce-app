@@ -1,0 +1,14 @@
+<h1>Ecommerce</h1>
+<% @products.each do |product| %>
+  <div>
+    <span>
+      <%= product.name%>
+    </span>
+    <span>
+      <%= product.discounted_price%>
+    </span>
+    <p>
+      <%= product.description%>
+    </p>
+  </div>
+<% end %>

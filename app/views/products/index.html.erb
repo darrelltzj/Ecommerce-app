@@ -1,0 +1,33 @@
+<h1>Store</h1>
+
+<div id="add_edit_product" class="section">
+</div>
+
+<div id="show_product" class="section">
+</div>
+
+<div id="all-product" class="section">
+  <%= link_to 'Add', new_product_path, remote: true %>
+  <% if @products.count > 0 %>
+    <% @products.each do |product| %>
+    <div>
+      <span>
+        <%= link_to product.name, product, remote: true %>
+      </span>
+      <span>
+        <%= link_to 'Edit', edit_product_path(product), remote: true %>
+      </span>
+      <!-- <span>
+        <%= number_to_currency(product.discounted_price, precision: 2, locale: :en)%>
+      </span> -->
+      <!-- <p>
+        <%= product.description%>
+      </p> -->
+    </div>
+      <% end %>
+  <% else %>
+    <p>
+      You have no products in your store at the moment.
+    </p>
+  <% end %>
+</div>

@@ -1,0 +1,5 @@
+$("#show_product").hide()
+$("#add_edit_product").show()
+$("#add_edit_product").html(
+  "<%= escape_javascript(render partial: 'form', locals: { product: @product } ) %>"
+)
