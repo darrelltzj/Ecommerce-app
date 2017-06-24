@@ -81,5 +81,4 @@ test:
 production:
   <<: *default
   database: ecommerce_test_production
-  username: ecommerce_test
-  password: <%= ENV['ECOMMERCE_TEST_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
