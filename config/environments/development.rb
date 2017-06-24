@@ -42,6 +42,11 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Adds additional error checking when serving assets at runtime.
+  # Checks for improperly declared sprockets dependencies.
+  # Raises helpful error messages.
+  config.assets.raise_runtime_errors = true
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
@@ -51,4 +56,15 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.paperclip_defaults = {
+    s3_host_name: "s3-#{ENV['AWS_REGION']}.amazonaws.com",
+    storage: :s3,
+    s3_region: ENV['AWS_REGION'],
+    s3_credentials: {
+      bucket: ENV['S3_BUCKET_NAME'],
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+    }
+  }
 end

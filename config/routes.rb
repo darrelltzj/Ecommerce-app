@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'profile' => 'users#edit'
   put 'profile' => 'users#update'
 
-  get 'dashboard' => 'dashboard#index'
+  get 'dashboard' => 'products#index'
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

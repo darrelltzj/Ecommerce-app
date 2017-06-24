@@ -25,13 +25,12 @@
   <%= f.label :discounted_price, 'Discounted Price' %>
   <%= f.number_field :discounted_price, min: 0.01, step: 0.01, required: true %>
 
-  <%= f.label :image_url, 'Image' %>
-  <% if @product.image_url  %>
-    <%= cl_image_tag(@product.image_url, width: 200, height: 100, crop: :fill) %>
+  <%= f.label :image, 'Image' %>
+  <% if @product.image_file_name  %>
+    <%= image_tag(@product.image, width: 200, crop: :fill) %>
   <% end %>
+  <%= f.file_field :image, :required => true%>
 
-  <%= f.file_field :image_url, :required => true%>
-
-  <%= f.submit 'Add Product', class: "btn waves-effect waves-light"  %>
+  <%= f.submit 'Submit', class: "btn waves-effect waves-light"  %>
 
 <% end %>

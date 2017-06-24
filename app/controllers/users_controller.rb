@@ -6,7 +6,6 @@ class UsersController < ApplicationController
 
   def create
     # Code.create(code:BCrypt::Password.create("*******"))
-    p params[:user]
     if params[:user][:password] != params[:user][:password_confirmation]
       flash[:danger] = "Passwords do not match. Please try again"
       render :new
@@ -18,14 +17,6 @@ class UsersController < ApplicationController
       render :new
     else
       new_user = User.new(first_name: user_params[:first_name], last_name: user_params[:last_name], email: user_params[:email], is_seller: user_params[:is_seller], password: user_params[:password], is_active: true)
-
-      # new_user[:first_name] = user_params[:first_name]
-      # new_user[:last_name] = user_params[:last_name]
-      # new_user[:email] = user_params[:email]
-      # new_user[:is_seller] = user_params[:is_seller]
-      # new_user[:password] = user_params[:password]
-
-      p 'user', new_user, user_params
 
       if new_user.save
         session[:user_id] = new_user.id

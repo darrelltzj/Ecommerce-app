@@ -6,7 +6,6 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
   # before_action :all_products
-  # respond_to :html, :js
 
   def index
     @products = Product.where(user: current_user)
@@ -20,21 +19,13 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # if product_params[:image_url] && product_params[:image_url].path
-    #   uploaded_file = product_params[:image_url].path
-    #   @cloudinary_file = Cloudinary::Uploader.upload(uploaded_file)
-    # end
-
     @product = Product.new(product_params)
     @product.user = current_user
-
-    # if product_params[:image_url] && product_params[:image_url].path
-    #   @product.image_url = @cloudinary_file["secure_url"]
-    # end
-
     if @product.save
+      flash[:success] = "Successfully added product."
       redirect_to products_path
     else
+      flash[:danger] = "Unable to update product. Please check parameters."
       render :form
     end
   end
@@ -47,18 +38,11 @@ class ProductsController < ApplicationController
   end
 
   def update
-    # if product_params[:image_url] && product_params[:image_url].path
-    #   uploaded_file = product_params[:image_url].path
-    #   @cloudinary_file = Cloudinary::Uploader.upload(uploaded_file)
-    # end
-
-    # if product_params[:image_url] && product_params[:image_url].path
-    #   @product.image_url = @cloudinary_file["secure_url"]
-    # end
-
     if @product.update(product_params)
+      flash[:success] = "Successfully updated product."
       redirect_to products_path
     else
+      flash[:danger] = "Unable to update product. Please check parameters."
       render :form
     end
   end
@@ -77,7 +61,7 @@ class ProductsController < ApplicationController
   # end
 
   def product_params
-    params.require(:product).permit(:name, :description, :is_available, :original_price, :discounted_price)
+    params.require(:product).permit(:name, :description, :is_available, :original_price, :discounted_price, :image)
   end
 
   def js_only

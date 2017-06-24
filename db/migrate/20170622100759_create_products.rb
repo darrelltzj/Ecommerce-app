@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.string :name
       t.float :original_price
       t.float :discounted_price
-      t.string :image_url
+      # t.string :image
       t.boolean :is_available
       t.text :description
 

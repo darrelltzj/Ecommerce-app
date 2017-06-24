@@ -58,6 +58,12 @@
   float: right;
 }
 
+.add-btn {
+  width:100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .order-btn, .stripe-button-el {
   margin-top: 10px;
   width:100%;

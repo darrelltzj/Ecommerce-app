@@ -45,6 +45,11 @@ gem 'jquery-rails'
 # stripe
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 
+# Image Upload
+gem 'figaro'
+gem 'paperclip'
+gem 'aws-sdk'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
