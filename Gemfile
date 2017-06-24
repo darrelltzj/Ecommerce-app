@@ -42,6 +42,9 @@ gem 'bootstrap-sass'
 # jquery
 gem 'jquery-rails'
 
+# stripe
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

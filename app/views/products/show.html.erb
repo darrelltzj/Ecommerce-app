@@ -32,7 +32,30 @@
           <%= number_to_currency(@product.original_price, precision: 2, locale: :en)%>
         </span>
       </div>
-      <%= button_to 'Order', new_order_path, class:'order-btn btn btn-success', remote: true %>
+      <!-- <%= button_to 'Order', new_order_path, class:'order-btn btn btn-success', :method => :get%> -->
+      <%= form_tag orders_path(:product => @product) do %>
+        <article>
+          <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+          <% end %>
+          <!-- <label class="amount"> -->
+            <!-- <span>Amount: $5.00</span> -->
+          <!-- </label> -->
+        </article>
+
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                data-description=<%= @product.name %>
+                data-amount=<%= @product.discounted_price*100 %>
+                data-locale="auto">
+        </script>
+        <script>
+        document.getElementsByClassName("stripe-button-el")[0].style.display = 'none'
+        </script>
+        <button type="submit" class="order-btn btn btn-success">Buy</button>
+      <% end %>
     </div>
   </div>
 </div>
