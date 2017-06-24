@@ -35,7 +35,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'gon'
 
 # # Bootstrap
-# gem 'bootstrap'
+gem 'bootstrap-sass'
 # # Bootstrap form
 # gem 'bootstrap_form'
 

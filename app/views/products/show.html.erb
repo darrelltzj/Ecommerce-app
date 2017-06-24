@@ -1,0 +1,38 @@
+
+<div class='show-product-container'>
+  <div class='show-product-image-container'>
+    <%= image_tag('volkan-olmez-73767.jpg', alt:'product-image', class:'show-product-image')%>
+  </div>
+  <div class='col-sm-12 col-md-9'>
+    <div class='show-product-information-container'>
+      <p class='show-product-name'>
+        <%= @product.name%>
+      </p>
+      <p class='show-product-seller'>
+        <%= @product.user.first_name%>
+      </p>
+      <p class='show-product-description'>
+        <%= @product.description %>
+      </p>
+      <!-- <% if @product.user === current_user%>
+        <div>
+          <%= link_to 'Edit', edit_product_path(@product), remote: true %>
+          <%= link_to 'Destroy', @product, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+        </div>
+      <% end %> -->
+    </div>
+  </div>
+  <div class='col-sm-12 col-md-3'>
+    <div class='show-product-order-container'>
+      <div class='show-product-prices-container'>
+        <span class='show-product-discounted-price'>
+          <%= number_to_currency(@product.discounted_price, precision: 2, locale: :en)%>
+        </span>
+        <span class='show-product-original-price'>
+          <%= number_to_currency(@product.original_price, precision: 2, locale: :en)%>
+        </span>
+      </div>
+      <%= button_to 'Order', new_order_path, class:'order-btn btn btn-success', remote: true %>
+    </div>
+  </div>
+</div>

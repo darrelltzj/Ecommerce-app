@@ -14,7 +14,7 @@
   <%= f.text_field :name, class: "validate", required: true %>
 
   <%= f.label :description %>
-  <%= f.text_field :description, :required => true %>
+  <%= f.text_area :description, :required => true %>
 
   <%= f.label :is_available, "Available" %>
   <%= f.select :is_available, [['Yes', true],['No', false]], :required => true %>

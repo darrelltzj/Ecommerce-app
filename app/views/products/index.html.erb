@@ -3,31 +3,49 @@
 <div id="add_edit_product" class="section">
 </div>
 
-<div id="show_product" class="section">
-</div>
+<!-- <div id="show_product" class="section">
+</div> -->
 
 <div id="all-product" class="section">
-  <%= link_to 'Add', new_product_path, remote: true %>
-  <% if @products.count > 0 %>
-    <% @products.each do |product| %>
-    <div>
-      <span>
-        <%= link_to product.name, product, remote: true %>
-      </span>
-      <span>
-        <%= link_to 'Edit', edit_product_path(product), remote: true %>
-      </span>
-      <!-- <span>
-        <%= number_to_currency(product.discounted_price, precision: 2, locale: :en)%>
-      </span> -->
-      <!-- <p>
-        <%= product.description%>
-      </p> -->
-    </div>
-      <% end %>
-  <% else %>
+
+  <div class='col-xs-12'>
+    <%= link_to 'Add', new_product_path, remote: true %>
+  </div>
+
+  <% if @products.count < 1 %>
     <p>
       You have no products in your store at the moment.
     </p>
+  <% else %>
+    <% @products.each do |product| %>
+      <div class='col-xs-12 col-sm-6 col-md-2'>
+        <div class='root-product-container' >
+          <div class='root-product-image-container'>
+            <%= link_to image_tag('volkan-olmez-73767.jpg', alt:'product-image', class:'root-product-image'), product%>
+          </div>
+          <div class='root-product-information-container'>
+            <p class='root-product-name'>
+              <%= product.name%>
+            </p>
+            <p class='root-product-seller'>
+              <%= product.user.first_name%>
+            </p>
+            <div class='root-product-prices-container'>
+              <span class='root-product-discounted-price'>
+                <%= number_to_currency(product.discounted_price, precision: 2, locale: :en)%>
+              </span>
+              <% if product.original_price != product.discounted_price %>
+              <span class='root-product-original-price'>
+                <%= number_to_currency(product.original_price, precision: 2, locale: :en)%>
+              </span>
+              <% end %>
+              <span class='product-edit'>
+                <%= link_to 'Edit', edit_product_path(product), remote: true %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </div>

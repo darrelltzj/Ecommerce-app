@@ -1,14 +1,31 @@
 <h1>Ecommerce</h1>
 <% @products.each do |product| %>
-  <div>
-    <span>
-      <%= product.name%>
-    </span>
-    <span>
-      <%= product.discounted_price%>
-    </span>
-    <p>
-      <%= product.description%>
-    </p>
+  <div class='col-xs-12 col-sm-6 col-md-2'>
+    <div class='root-product-container' >
+      <div class='root-product-image-container'>
+        <%= link_to image_tag('volkan-olmez-73767.jpg', alt:'product-image', class:'root-product-image'), product%>
+      </div>
+      <div class='root-product-information-container'>
+        <p class='root-product-name'>
+          <%= product.name%>
+        </p>
+        <p class='root-product-seller'>
+          <%= product.user.first_name%>
+        </p>
+        <div class='root-product-prices-container'>
+          <span class='root-product-discounted-price'>
+            <%= number_to_currency(product.discounted_price, precision: 2, locale: :en)%>
+          </span>
+          <% if product.original_price != product.discounted_price %>
+          <span class='root-product-original-price'>
+            <%= number_to_currency(product.original_price, precision: 2, locale: :en)%>
+          </span>
+          <% end %>
+        </div>
+      </div>
+      <!-- <p>
+        <%= product.description%>
+      </p> -->
+    </div>
   </div>
 <% end %>
