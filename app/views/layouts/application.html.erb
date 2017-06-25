@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>EcommerceTest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= include_gon %>
@@ -9,7 +10,15 @@
   </head>
 
   <body>
+    <%= render "partials/nav" %>
     <%= render "partials/flash" %>
     <%= yield %>
+
+    <script>
+    $('.alert').on('click', function () {
+      $(this).remove()
+    })
+    </script>
+
   </body>
 </html>

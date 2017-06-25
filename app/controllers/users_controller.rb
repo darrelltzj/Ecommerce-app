@@ -21,9 +21,11 @@ class UsersController < ApplicationController
       if new_user.save
         session[:user_id] = new_user.id
         flash[:success] = "Successfully created an account"
-        # redirect to store if Seller
-        # redirect to products if buyer
-        redirect_to root_path
+        if current_user.is_seller
+          redirect_to products_path
+        else
+          redirect_to orders_path
+        end
       else
         flash[:danger] = "Unable to create account. Please check parameters."
         render :new

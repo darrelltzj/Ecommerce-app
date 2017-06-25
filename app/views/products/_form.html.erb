@@ -1,36 +1,67 @@
-<%= form_for(@product, remote: true, :html => { id:"add-product"} ) do |f| %>
+<div class='product-form'>
+  <h2>Update Product</h2>
+  <%= form_for(@product, remote: true, :html => { id:"add-product"} ) do |f| %>
 
-<% if product.errors.any? %>
-  <ul style="list-style: none;">
-    <% product.errors.full_messages.each do |message| %>
-      <li>
-        <%= message %>
-      </li>
+  <% if product.errors.any? %>
+      <% product.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    </ul>
     <% end %>
-  </ul>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control", :required => true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :original_price, 'Original Price' %>
+      <%= f.number_field :original_price, min: 0.01, step: 0.01, class: "form-control", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :discounted_price, 'Discounted Price' %>
+      <%= f.number_field :discounted_price, min: 0.01, step: 0.01, class: "form-control", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :status, "Available" %>
+      <%= f.select :status, [['Yes', 'available'],['No', 'unavailable']], class: "form-control", :required => true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :image, 'Image' %>
+      <% if @product.image_file_name  %>
+        <br>
+        <%= image_tag(@product.image, width: 200, crop: :fill) %>
+        <%= f.file_field :image, accept: 'image/*'%>
+      <% else %>
+        <%= f.file_field :image, accept: 'image/*', :required => true%>
+      <% end %>
+    </div>
+
+    <%= f.submit 'Update', class: "btn-full btn btn-success"  %>
+    <script>
+    $('.updating-product').submit(function (e) {
+      e.preventDefault()
+      $('<p style="color:red;">Uploading Please wait...</p>').insertBefore(this)
+    })
+    </script>
   <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name, class: "validate", required: true %>
+  <script>
+    function hideEdit() {
+      $('.edit_product').hide()
+      $(".add_product").show()
+    }
+  </script>
 
-  <%= f.label :description %>
-  <%= f.text_area :description, :required => true %>
-
-  <%= f.label :is_available, "Available" %>
-  <%= f.select :is_available, [['Yes', true],['No', false]], :required => true %>
-
-  <%= f.label :original_price, 'Original Price' %>
-  <%= f.number_field :original_price, min: 0.01, step: 0.01, required: true %>
-
-  <%= f.label :discounted_price, 'Discounted Price' %>
-  <%= f.number_field :discounted_price, min: 0.01, step: 0.01, required: true %>
-
-  <%= f.label :image, 'Image' %>
-  <% if @product.image_file_name  %>
-    <%= image_tag(@product.image, width: 200, crop: :fill) %>
-  <% end %>
-  <%= f.file_field :image, :required => true%>
-
-  <%= f.submit 'Submit', class: "btn waves-effect waves-light"  %>
-
-<% end %>
+  <button onclick=hideEdit('test') class='btn-full btn-cancel btn'>Cancel</button>
+</div>

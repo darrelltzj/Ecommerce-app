@@ -1,6 +1,10 @@
-#all-products {
-  width: 100vw;
-  background-color: red;
+.sessions-form {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.sessions-link {
+  margin-top: 10px;
 }
 
 .root-product-container {
@@ -58,10 +62,13 @@
   float: right;
 }
 
-.add-btn {
-  width:100px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+.btn-full {
+  width:100%;
+}
+
+.btn-cancel {
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .order-btn, .stripe-button-el {
@@ -69,7 +76,17 @@
   width:100%;
 }
 
+.product-form {
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
 @media only screen and (max-width: 980px) {
+  .sessions-form {
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
   .show-product-container {
     margin-left: 0%;
     margin-right: 0%;

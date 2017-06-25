@@ -1,7 +1,23 @@
-<h1>Login</h1>
-
-<%= form_for :user do |f| %>
-  <%= f.email_field :email, placeholder: "Enter your email" %>
-  <%= f.password_field :password, placeholder: "Enter your password" %>
-  <%= f.submit "Login" %>
-<% end %>
+<div class='sessions-form'>
+  <h1>Login</h1>
+  <%= form_for :user do |f| %>
+    <div class="form-group">
+      <%= f.label :email, 'Email' %>
+      <%= f.email_field :email, placeholder: "Enter your email", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, 'Password' %>
+      <%= f.password_field :password, placeholder: "Enter your password", class: "form-control" %>
+    </div>
+    <%= f.submit "Login", class:'btn btn-success' %>
+  <% end %>
+  <div class='sessions-link'>
+    <span>
+      Don't have an Account yet?
+    </span>
+    <span>
+      <!-- <a href='/signup'>Signup here.</a> -->
+      <%= link_to 'Signup here.', signup_path%>
+    </span>
+  </div>
+</div>

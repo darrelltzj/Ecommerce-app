@@ -8,9 +8,12 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       flash[:success] = "Successfully Logged in."
-      # redirect to store if Seller
-      # redirect to products if buyer
-      redirect_to root_path
+      if current_user.is_seller
+        redirect_to products_path
+      else
+        redirect_to orders_path
+      end
+
     else
       flash[:danger] = "Credentials are invalid. Please try again"
       redirect_to login_path

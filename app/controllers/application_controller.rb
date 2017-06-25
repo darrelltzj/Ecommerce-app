@@ -19,5 +19,12 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_id(session[:user_id])
   end
 
+  def product_is_available
+    unless @product.status == 'available'
+      flash[:danger] = "Product is unavailable."
+      redirect_to root_path
+    end
+  end
+
   helper_method :current_user
 end

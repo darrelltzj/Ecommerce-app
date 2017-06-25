@@ -7,13 +7,11 @@ Rails.application.routes.draw do
   get 'profile' => 'users#edit'
   put 'profile' => 'users#update'
 
-  get 'dashboard' => 'products#index'
-
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
+  # get 'dashboard' => 'products#index'
   resources :products
   resources :orders
-  resources :charges
 end
