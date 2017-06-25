@@ -92,13 +92,12 @@
       <h2>Add Product</h2>
       <%= form_for(@product, remote: true, :html => { id:"add-product"} ) do |f| %>
 
-      <% if @product.errors.any? %>
+        <% if @product.errors.any? %>
           <% @product.errors.full_messages.each do |message| %>
             <div class="alert alert-danger">
               <%= message %>
             </div>
           <% end %>
-        </ul>
         <% end %>
 
         <div class="form-group">

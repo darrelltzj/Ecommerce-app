@@ -1,25 +1,70 @@
-<div id='profile'>
+<div class='sessions-form profile'>
   <h1>Profile</h1>
 
-  <%= form_for :user, url: profile_path do |f| %>
-    <%= f.label :name, "First Name" %>
-    <%= f.text_field :first_name, placeholder: "DIO", :required => true, :value => @user.first_name %>
+  <%= form_for :user, url: profile_path, method: :put do |f| %>
 
-    <%= f.label :name, "Last Name" %>
-    <%= f.text_field :last_name, placeholder: "Works", :required => true, :value => @user.last_name %>
+    <% if @user.errors.any? %>
+      <% @user.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger">
+          <%= message %>
+        </div>
+        <% end %>
+      <% end %>
 
-    <%= f.label :name, "Email" %>
-    <%= f.email_field :email, placeholder: "dioworks@dioworks.com", :required => true, :value => @user.email %>
+    <div class="form-group">
+      <%= f.label :first_name, "First Name" %>
+      <%= f.text_field :first_name, placeholder: "DIO", :required => true, :value => @user.first_name, class: "form-control" %>
+    </div>
 
-    <%= f.label :name, "I am a Seller" %>
-    <%= f.select :is_seller, [['No', false],['Yes', true]], :required => true, :value => @user.is_seller %>
+    <div class="form-group">
+      <%= f.label :last_name, "Last Name" %>
+      <%= f.text_field :last_name, placeholder: "Works", :required => true, :value => @user.last_name, class: "form-control" %>
+    </div>
 
-    <%= f.label :name, "New Password" %>
-    <%= f.password_field :password, placeholder: "Enter your password", :required => true %>
+    <div class="form-group">
+      <%= f.label :email, "Email" %>
+      <%= f.email_field :email, placeholder: "dioworks@dioworks.com", :required => true, :value => @user.email, class: "form-control" %>
+    </div>
 
-    <%= f.label :name, "Confirm Password" %>
-    <%= f.password_field :password_confirmation, placeholder: "Please confirm it", :required => true %>
+    <% if current_user.is_seller %>
+      <div class="form-group">
+        <%= f.label :is_seller, "I am a Seller" %>
+        <%= f.select :is_seller, [['No', false],['Yes', true]], :required => true, :value => @user.is_seller, class: "form-control" %>
+      </div>
+    <% else %>
+      <div class="form-group">
+        <%= f.label :is_seller, "I am a Seller" %>
+        <%= f.select :is_seller, [['No', false],['Yes', true]], :required => true, :value => @user.is_seller, class: "form-control" %>
+      </div>
+      <script>
+      $('#user_is_seller').change(function() {
+        if ($('#user_is_seller').val() === 'true') {
+          $('<input placeholder="Enter Seller Code" required="required" type="password" name="user[code]"" id="user_code" class="form-control">').insertAfter(this)
+        } else if ($('#user_is_seller').val() === 'false') {
+          if ($('#user_code')) {
+            $('#user_code').remove()
+          }
+        }
+      })
+      </script>
+    <% end %>
 
-    <%= f.submit "Sign Up" %>
+    <div class="form-group">
+      <%= f.label :password_current, "Current Password" %>
+      <%= f.password_field :password_current, placeholder: "Enter your current password", :required => true, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, "New Password" %>
+      <%= f.password_field :password, placeholder: "Enter your new password (optional)", class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, "Confirm New Password" %>
+      <%= f.password_field :password_confirmation, placeholder: "Please confirm it", class: "form-control" %>
+    </div>
+
+    <%= f.submit "Update", class: "btn btn-full btn-success" %>
+    <%= f.submit "Deactivate Account", class: "btn-full btn-cancel btn" %>
   <% end %>
 </div>

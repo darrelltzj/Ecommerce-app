@@ -53,7 +53,6 @@ ActiveRecord::Schema.define(version: 20170624133738) do
     t.string "email"
     t.string "password_digest"
     t.boolean "is_seller"
-    t.boolean "is_active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

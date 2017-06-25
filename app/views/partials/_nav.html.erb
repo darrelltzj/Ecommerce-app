@@ -25,10 +25,12 @@
             <%= link_to 'Signup', signup_path %>
           </li>
         <% else %>
-        <li>
-          <!-- <a href="#">Store</a> -->
-          <%= link_to 'Store', products_path %>
-        </li>
+          <% if current_user.is_seller %>
+            <li>
+              <!-- <a href="#">Store</a> -->
+              <%= link_to 'Store', products_path %>
+            </li>
+          <% end %>
         <li>
           <!-- <a href="#">Purchases</a> -->
           <%= link_to 'Purchases', orders_path %>

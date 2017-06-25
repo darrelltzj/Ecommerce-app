@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :is_authenticated
-  before_action :user_is_seller
+  before_action :user_is_seller, except: [:show]
   before_action :js_only, except: [:index, :show]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :product_is_available, only: [:show]

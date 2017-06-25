@@ -2,13 +2,12 @@
   <h2>Update Product</h2>
   <%= form_for(@product, remote: true, :html => { id:"add-product"} ) do |f| %>
 
-  <% if product.errors.any? %>
-      <% product.errors.full_messages.each do |message| %>
+    <% if @product.errors.any? %>
+      <% @product.errors.full_messages.each do |message| %>
         <div class="alert alert-danger">
           <%= message %>
         </div>
       <% end %>
-    </ul>
     <% end %>
 
     <div class="form-group">
@@ -63,5 +62,5 @@
     }
   </script>
 
-  <button onclick=hideEdit('test') class='btn-full btn-cancel btn'>Cancel</button>
+  <button onclick=hideEdit() class='btn-full btn-cancel btn'>Cancel</button>
 </div>

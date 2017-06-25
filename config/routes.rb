@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
 
   # get 'dashboard' => 'products#index'
+  resources :users
   resources :products
   resources :orders
 end

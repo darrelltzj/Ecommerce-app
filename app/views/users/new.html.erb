@@ -1,6 +1,15 @@
 <div class='sessions-form signup'>
   <h1>Signup</h1>
   <%= form_for :user, url: signup_path do |f| %>
+
+    <% if @user.errors.any? %>
+      <% @user.errors.full_messages.each do |message| %>
+        <div class="alert alert-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+
     <div class="form-group">
       <%= f.label :first_name, "First Name" %>
       <%= f.text_field :first_name, placeholder: "DIO", :required => true, class: "form-control" %>
@@ -20,7 +29,7 @@
       <%= f.label :is_seller, "Sign Up as a Seller" %>
       <%= f.select :is_seller, [['No', false],['Yes', true]], :required => true, class: "form-control" %>
     </div>
-    
+
     <script>
     $('#user_is_seller').change(function() {
       if ($('#user_is_seller').val() === 'true') {
