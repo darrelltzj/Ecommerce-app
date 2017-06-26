@@ -18,7 +18,7 @@ class ProductsController < ApplicationController
       redirect_to dashboard_path(:store => true)
     else
       flash[:danger] = "Unable to update product. Please check parameters."
-      render :form
+      redirect_to dashboard_path(:store => true)
     end
   end
 
@@ -48,6 +48,7 @@ class ProductsController < ApplicationController
       redirect_to dashboard_path(:store => true)
     else
       flash[:danger] = "Unable to remove product."
+      render :form
     end
   end
 
