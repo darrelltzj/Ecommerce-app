@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       flash[:success] = "Successfully Logged in."
       if current_user.is_seller
-        redirect_to products_path
+        redirect_to dashboard_path(:store => true)
       else
-        redirect_to orders_path
+        redirect_to dashboard_path
       end
 
     else

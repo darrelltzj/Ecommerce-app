@@ -1,4 +1,3 @@
-
 <div class='show-product-container'>
   <div class='show-product-image-container'>
     <%= image_tag(@product.image, alt:'product-image', class:'show-product-image')%>
@@ -27,32 +26,31 @@
         </span>
       </div>
 
-      <!-- <% if @product.user === current_user%>
-        <div>
-          <%= link_to 'Edit', edit_product_path(@product), remote: true %>
-          <%= link_to 'Destroy', @product, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
-        </div>
-      <% end %> -->
-      <%= form_tag orders_path(:product => @product) do %>
-        <article>
-          <% if flash[:error].present? %>
-            <div id="error_explanation">
-              <p><%= flash[:error] %></p>
-            </div>
-          <% end %>
-        </article>
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      <% if @product.user != current_user%>
+        <%= form_tag orders_path(:product => @product) do %>
+          <article>
+            <% if flash[:error].present? %>
+              <div id="error_explanation">
+                <p><%= flash[:error] %></p>
+              </div>
+              <% end %>
+          </article>
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                 data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                 data-description=<%= @product.name %>
                 data-amount=<%= @product.discounted_price*100 %>
                 data-locale="auto">
-        </script>
-        <!-- <script>
-        document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
-        </script>
-        <button type="submit" class="order-btn btn btn-success">Buy</button> -->
+          </script>
+                <!-- <script>
+                document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+                </script>
+                <button type="submit" class="order-btn btn btn-success">Buy</button> -->
+        <% end %>
+      <% else %>
+        <p>
+          You are selling this product.
+        </p>
       <% end %>
-
     </div>
   </div>
 </div>

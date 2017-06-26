@@ -7,6 +7,11 @@
   margin-top: 10px;
 }
 
+.dashboard-toggle {
+  text-align: center;
+  font-size: 1.6em;
+}
+
 .root-product-container {
   border: 1px solid silver;
   border-radius: 10px;
@@ -21,9 +26,27 @@
   overflow: hidden;
 }
 
+.orders-header {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.order-container {
+  margin-top: 18px;
+  margin-bottom: 18px;
+  margin-left: 10%;
+  margin-right: 10%;
+  border: 1px solid silver;
+  overflow: hidden;
+}
+
 .root-product-image, .show-product-image {
   width: 100%;
+}
 
+.order-image-container {
+  margin-left: -18px;
+  margin-right: -18px;
 }
 
 .root-product-information-container, .show-product-information-container {
@@ -35,6 +58,11 @@
   font-size: 1.2em;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.order-product-name {
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
 .root-product-seller, .show-product-seller {
@@ -88,6 +116,16 @@
   }
 
   .show-product-container {
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  .orders-header {
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+
+  .order-container {
     margin-left: 0%;
     margin-right: 0%;
   }

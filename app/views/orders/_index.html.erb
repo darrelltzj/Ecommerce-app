@@ -1,0 +1,38 @@
+<div class='orders-header'>
+  <h1>Purchases</h1>
+</div>
+  <% if @orders.count < 1%>
+    <p class='orders-header'>
+      You have no purchased products at the moment. Click <a href='/'>here</a> to start shopping.
+    </p>
+  <% else %>
+    <% @orders.each do |order| %>
+      <div class='order-container'>
+        <div class='col-sm-4 order-image-container'>
+          <%= link_to image_tag(order.product.image, alt:'product-image', class:'root-product-image'), order.product %>
+        </div>
+        <div class='col-sm-8'>
+          <div class='col-sm-12'>
+            <p class='order-product-name'>
+              <%= order.product.name %>
+            </p>
+            <p>
+              <%= order.product.description %>
+            </p>
+            <p class='show-product-seller'>
+              Seller: <%= order.product.user.first_name %>
+            </p>
+            <p class='show-product-seller'>
+              Purchased on: <%= formatDate(order.created_at) %>
+            </p>
+            <div class='order-paid-container'>
+              <span>Paid: </span>
+              <span class='show-product-discounted-price'>
+                <%= number_to_currency(order.paid, precision: 2, locale: :en) %>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>

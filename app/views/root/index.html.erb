@@ -5,7 +5,7 @@
     </p>
   <% else %>
     <% @products.each do |product| %>
-      <div class='col-xs-12 col-sm-6 col-md-2'>
+      <div class='col-xs-12 col-sm-6 col-md-3'>
         <div class='root-product-container' >
           <div class='root-product-image-container'>
             <%= link_to image_tag(product.image, alt:'product-image', class:'root-product-image'), product%>
@@ -15,7 +15,7 @@
               <%= product.name%>
             </p>
             <p class='root-product-seller'>
-              <%= product.user.first_name%>
+              Seller: <%= product.user.first_name%>
             </p>
             <div class='root-product-prices-container'>
               <span class='root-product-discounted-price'>

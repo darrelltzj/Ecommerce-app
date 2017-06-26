@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  # get 'dashboard' => 'products#index'
-  resources :users
-  resources :products
-  resources :orders
+  get 'dashboard' => 'dashboard#index'
+
+  resources :users, only: [:new, :create, :edit, :update]
+  resources :products, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :orders, only: [:create]
 end

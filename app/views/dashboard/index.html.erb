@@ -1,0 +1,45 @@
+<% if current_user.is_seller %>
+<div class='dashboard-toggle'>
+  <a id='purchases-toggle' style='text-decoration: underline;'>
+    Purchases
+  </a>
+  <%= ' | '%>
+  <a id='store-toggle'>
+    Store
+  </a>
+</div>
+<% end %>
+
+<div id='purchases'>
+  <%= render "orders/index" %>
+</div>
+
+<% if current_user.is_seller %>
+<div id='store' style='display:none;'>
+  <%= render "products/index" %>
+</div>
+<% end %>
+
+<script>
+$(document).on('click', '#store-toggle', function(){
+  $('#store-toggle').css('text-decoration','underline')
+  $('#store').css('display','unset')
+  $('#purchases-toggle').css('text-decoration','none')
+  $('#purchases').css('display','none')
+})
+$(document).on('click', '#purchases-toggle', function(){
+  $('#store-toggle').css('text-decoration','none')
+  $('#store').css('display','none')
+  $('#purchases-toggle').css('text-decoration','underline')
+  $('#purchases').css('display','unset')
+})
+</script>
+
+<% if @store %>
+<script>
+$('#store-toggle').css('text-decoration','underline')
+$('#store').css('display','unset')
+$('#purchases-toggle').css('text-decoration','none')
+$('#purchases').css('display','none')
+</script>
+<% end %>

@@ -7,13 +7,13 @@ class ProductsController < ApplicationController
 
   # before_action :all_products
 
-  def index
-    @products = Product.where(user: current_user)
-    @products_available = @products.where(status: 'available')
-    @products_unavailable = @products.where(status: 'unavailable')
-    @product = Product.new
+  # def index
+    # @products = Product.where(user: current_user)
+    # @products_available = @products.where(status: 'available')
+    # @products_unavailable = @products.where(status: 'unavailable')
+    # @product = Product.new
     # gon.products = Product.where(user: current_user)
-  end
+  # end
 
   def new
     @product = Product.new
@@ -25,7 +25,8 @@ class ProductsController < ApplicationController
     @product.user = current_user
     if @product.save
       flash[:success] = "Successfully added product."
-      redirect_to products_path
+      # redirect_to products_path
+      redirect_to dashboard_path(:store => true)
     else
       flash[:danger] = "Unable to update product. Please check parameters."
       render :form
@@ -45,7 +46,8 @@ class ProductsController < ApplicationController
     end
     if @product.update(product_params)
       flash[:success] = "Successfully updated product."
-      redirect_to products_path
+      # redirect_to products_path
+      redirect_to dashboard_path(:store => true)
     else
       flash[:danger] = "Unable to update product. Please check parameters."
       render :form
@@ -55,7 +57,8 @@ class ProductsController < ApplicationController
   def destroy
     if @product.update(status: 'removed')
       flash[:success] = "Successfully removed product."
-      redirect_to products_path
+      # redirect_to products_path
+      redirect_to dashboard_path(:store => true)
     else
       flash[:danger] = "Unable to remove product."
     end

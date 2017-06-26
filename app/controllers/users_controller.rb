@@ -30,9 +30,9 @@ class UsersController < ApplicationController
         session[:user_id] = new_user.id
         flash[:success] = "Successfully created an account"
         if current_user.is_seller
-          redirect_to products_path
+          redirect_to dashboard_path(:store => true)
         else
-          redirect_to orders_path
+          redirect_to dashboard_path
         end
       else
         flash[:danger] = "Unable to create account. Please check parameters."
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-  end
+  # def show
+  # end
 
   def edit
     @user = current_user
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
       if params[:user][:password] != params[:user][:password_confirmation]
         flash[:danger] = "New Passwords do not match. Please try again"
         render :edit
-      elsif params[:user][:password].length < 6 || params[:user][:password].length > 20
+      elsif params[:user][:password].length > 0 && (params[:user][:password].length < 6 || params[:user][:password].length > 20)
         flash[:danger] = "Password must be between 6 to 20 characters. Please try again"
         render :edit
       elsif params[:user][:is_seller] == true && BCrypt::Password.new(Code.find(1).code) != params[:user][:code]
@@ -79,9 +79,9 @@ class UsersController < ApplicationController
           end
           flash[:success] = "Successfully updated account"
           if current_user.is_seller
-            redirect_to products_path
+            redirect_to dashboard_path(:store => true)
           else
-            redirect_to orders_path
+            redirect_to dashboard_path
           end
         else
           flash[:danger] = "Unable to edit account. Please check parameters."
@@ -95,7 +95,6 @@ class UsersController < ApplicationController
         product.save!
       end
       current_user.is_seller = false
-
       # current_user.is_active = false
       # current_user.email = "#{current_user.id}@email.com"
       # current_user.password_digest = (0...8).map { (65 + rand(26)).chr }.join
@@ -110,8 +109,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-  end
+  # def destroy
+  # end
 
   private
 
