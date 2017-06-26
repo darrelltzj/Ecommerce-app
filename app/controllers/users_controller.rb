@@ -23,7 +23,6 @@ class UsersController < ApplicationController
       email: params[:user][:email],
       is_seller: params[:user][:is_seller],
       password: params[:user][:password],
-      # is_active: true
       )
 
       if new_user.save
@@ -40,9 +39,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  # def show
-  # end
 
   def edit
     @user = current_user
@@ -95,9 +91,6 @@ class UsersController < ApplicationController
         product.save!
       end
       current_user.is_seller = false
-      # current_user.is_active = false
-      # current_user.email = "#{current_user.id}@email.com"
-      # current_user.password_digest = (0...8).map { (65 + rand(26)).chr }.join
 
       if current_user.save
         session[:user_id] = nil
@@ -108,9 +101,6 @@ class UsersController < ApplicationController
       end
     end
   end
-
-  # def destroy
-  # end
 
   private
 

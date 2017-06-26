@@ -3,13 +3,6 @@ class OrdersController < ApplicationController
   before_action :is_authenticated
   helper OrdersHelper
 
-  # def index
-    # @orders = Order.where(user: current_user)
-  # end
-
-  # def new
-  # end
-
   def create
     @product = Product.find(params[:product])
 
@@ -45,19 +38,5 @@ class OrdersController < ApplicationController
       flash[:danger] = "Unable to purchase product. Please try again later."
       redirect_to product_path(@product)
     end
-
   end
-
-  # def show
-  # end
-  #
-  # def edit
-  # end
-  #
-  # def update
-  # end
-  #
-  # def destroy
-  # end
-
 end

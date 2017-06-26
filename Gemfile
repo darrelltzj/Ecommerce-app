@@ -36,9 +36,6 @@ gem 'gon'
 
 # # Bootstrap
 gem 'bootstrap-sass'
-# # Bootstrap form
-# gem 'bootstrap_form'
-# gem 'data-confirm-modal'
 
 # jquery
 gem 'jquery-rails'

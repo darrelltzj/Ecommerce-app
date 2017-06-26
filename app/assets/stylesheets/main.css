@@ -16,6 +16,8 @@
   border: 1px solid silver;
   border-radius: 10px;
   overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .show-product-container {
