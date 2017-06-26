@@ -86,7 +86,7 @@
 </div>
 
 <div class='col-xs-12 col-sm-12 col-md-4'>
-  <div class='add_product'>
+  <!-- <div class='add_product'>
     <div class='product-form'>
       <h2>Add Product</h2>
       <%= form_for(@product, remote: true, :html => { id:"add-product"} ) do |f| %>
@@ -138,7 +138,8 @@
         </script>
       <% end %>
     </div>
-  </div>
+  </div> -->
+  <%= render "products/addform" %>
 
   <div class="edit_product"></div>
 

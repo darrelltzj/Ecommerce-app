@@ -17,8 +17,8 @@ class ProductsController < ApplicationController
       flash[:success] = "Successfully added product."
       redirect_to dashboard_path(:store => true)
     else
-      flash[:danger] = "Unable to update product. Please check parameters."
-      redirect_to dashboard_path(:store => true)
+      flash[:danger] = "Unable to add product. Please check parameters."
+      render :addform
     end
   end
 
