@@ -38,3 +38,7 @@ To run application on localhost:3000
 ```
 foreman run rails s
 ```
+
+## Requirements
+
+![Requirements](http://i.imgur.com/2ybmxOg.png)
